@@ -3,7 +3,7 @@ package cornO;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-public class Anotacao {
+public class Anotacao implements Comparable<Anotacao> {
 	private String nomeDisciplina;
 	private String data;
 	private String texto;
@@ -24,6 +24,15 @@ public class Anotacao {
 	}
 	public int getId() {
 		return this.idAnotacao;
+	}
+	public String getNomeDisciplina() {
+		return this.nomeDisciplina;
+	}
+	public String getData() {
+		return this.data;
+	}
+	public HashSet<String> getSumario(){
+		return this.sumario;
 	}
 	public void defineSumario(String sumario) {
 		this.sumario.add(sumario);
@@ -58,5 +67,14 @@ public class Anotacao {
 	public boolean responderQuestao(int ordemQuestao, String resposta) {
 		Questao question = questoes.get(ordemQuestao);
 		return question.responderQuestao(resposta);
+	}
+	@Override
+	public int compareTo(Anotacao o) {
+		int cmp = this.nomeDisciplina.compareTo(o.nomeDisciplina);
+		if (cmp == 0) {
+			return Integer.compare(this.idAnotacao, o.idAnotacao);
+		}
+		return cmp;
+		
 	}
 }

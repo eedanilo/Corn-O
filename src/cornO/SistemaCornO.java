@@ -38,4 +38,17 @@ public class SistemaCornO {
 		Anotacao anotaaaa = anotacoes.get(idAnotacao);
 		return anotaaaa.responderQuestao(ordemQuestao, resposta);
 	}
+	String listarAnotacoes() {
+		ArrayList<Anotacao> listaAnotacoes = new ArrayList<>(anotacoes.values());
+		Collections.sort(listaAnotacoes);
+		
+		StringBuilder sb = new StringBuilder();
+		for (Anotacao anotacao : listaAnotacoes) {
+			sb.append(anotacao.getId()).append(" - ")
+			.append(anotacao.getNomeDisciplina()).append(" - ")
+			.append(anotacao.getData()).append(" - ")
+			.append("Sumário: ").append(anotacao.getSumario()).append("\n");
+		}
+		return sb.toString().trim();
+	}
 }
